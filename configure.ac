@@ -17,7 +17,8 @@ AC_PROG_LIBTOOL
 AC_PROG_CC
 AM_PROG_CC_C_O
 
-AM_SILENT_RULES([yes])
+# this will print compilation command line
+AM_SILENT_RULES([no])
 
 # use the C compiler for the following checks
 AC_LANG([C])
@@ -104,14 +105,14 @@ AC_ARG_ENABLE([debug],
 	      [AS_HELP_STRING([--enable-debug],
 			      [enable debug data generation])],
 			       [enable_debug="$enableval"],
-			       [enable_debug=no])
+			       [enable_debug=yes])
 AC_MSG_RESULT([$enable_debug])
 
 if test "$enable_debug" = "yes"; then
 	AC_DEFINE([DEBUG],[],[Debug Mode])
 	AM_CFLAGS="$AM_CFLAGS -g -ggdb -Wall -Werror -Wdeclaration-after-statement \
 		  -Wsign-compare -Wc++-compat \
-		   -fno-omit-frame-pointer -O0 -D_REENTRANT -D_GNU_SOURCE"
+		   -fno-omit-frame-pointer -D_REENTRANT -D_GNU_SOURCE"
 else
 	AC_DEFINE([NDEBUG],[],[No-debug Mode])
 	AM_CFLAGS="$AM_CFLAGS -g -ggdb -Wall -Werror -Wpadded -Wdeclaration-after-statement \

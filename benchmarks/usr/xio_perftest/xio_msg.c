@@ -115,7 +115,7 @@ failed_huge_page:
 /*---------------------------------------------------------------------------*/
 /* free_mem_buf								     */
 /*---------------------------------------------------------------------------*/
-inline void free_mem_buf(uint8_t *pool_buf, int shmid)
+void free_mem_buf(uint8_t *pool_buf, int shmid)
 {
 	if (shmid >= 0) {
 		if (shmdt(pool_buf) != 0) {
